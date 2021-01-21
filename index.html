@@ -3,6 +3,8 @@
 <head>
     <title>Pixel Art Maker!</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monoton">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -24,10 +26,16 @@
             <input type="color" id="colorPicker" value="#3C96B4">
             <input type="button" class="fill-button" value="FILL">
         </div>
+        <div class="column">
+            <h4>Mode</h4>
+            <input type="button" class="erase-mode" value="ERASE">
+            <p><em>or double-click to erase</em></p>
+            <input type="button" class="draw-mode" value="DRAW">
+        </div>
     </div>
 
     <h2>Design Canvas</h2>
-    <table id="pixelCanvas"></table>
+    <table class='pixel-canvas' id="pixelCanvas"></table>
 
     <script src="designs.js"></script>
 </body>

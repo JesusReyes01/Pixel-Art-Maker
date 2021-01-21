@@ -4,22 +4,31 @@ let color = document.getElementById('colorPicker');
 let height = document.getElementById('inputHeight');
 let width = document.getElementById('inputWidth');
 let sizePickerForm = document.getElementById('sizePicker');
+
+let eraseMode = document.querySelector('.erase-mode');
+let drawMode = document.querySelector('.draw-mode');
 let fillButton = document.querySelector('.fill-button');
 
 
+
+//Function to create grid
 let makeGrid = (event) => {
     event.preventDefault()
+
     //Deletes grid if it exists
     if(gridTable.rows.length > 0){
         while(gridTable.rows.length > 0){
             gridTable.deleteRow(0);
         }
     }
-    //Creates table rows and columns
-    for (let i=0; i<height.value; i++){
+
+    //Creates table
+    for (let i=0; i < height.value; i++){
+
         const row = gridTable.insertRow(i);
-        for (let j=0; j<width.value; j++){
+        for (let j=0; j < width.value; j++){
             const cell = row.insertCell(j);
+
             //Adds event listener to each cell and 
             //changes the background color to selected color when triggered
             cell.addEventListener('click', () => {
@@ -28,10 +37,82 @@ let makeGrid = (event) => {
         }
     }
 }
-//Triggers madeGrid function when form is submitted
+
+//Adding Listener for the submit input on form.
 sizePickerForm.addEventListener('submit', makeGrid);
 
-//Event Listener for the Fill Button(Changes whole table to selected color)
-fillButton.addEventListener('click', () => {
-    gridTable.querySelectorAll('td').forEach( td => td.style.backgroundColor = color.value);
+let down = false;
+
+gridTable.addEventListener('mousedown', (e) => {
+	down = true;
+	gridTable.addEventListener('mouseup', () => {
+		down = false;
+	});
+    gridTable.addEventListener('mouseleave', () => {
+        down = false;
+     });
+
+    gridTable.addEventListener('mouseover', e => {
+  	    if (down) {
+            if (e.target.tagName === 'TD') {
+                e.target.style.backgroundColor = color.value;
+            }
+        }
+    });
 });
+
+pixelCanvas.addEventListener('dblclick', e => {
+    e.target.style.backgroundColor = null;
+});
+
+eraseMode.addEventListener('click', () => {
+    gridTable.addEventListener('mousedown', (e) => {
+        down = true;
+      
+        gridTable.addEventListener('mouseup', () => {
+            down = false;
+        });
+      
+        gridTable.addEventListener('mouseleave', () => {
+            down = false;
+        });
+
+        gridTable.addEventListener('mouseover', e => {
+            if (down) {
+                if (e.target.tagName === 'TD') {
+                    e.target.style.backgroundColor = null;
+                }
+            }
+        });
+    });
+    pixelCanvas.addEventListener('mousedown', (e) => {
+        e.target.style.backgroundColor = null;
+    });
+  });
+
+drawMode.addEventListener('click', () => {
+    gridTable.addEventListener('mousedown', (e) => {
+        down = true;
+        gridTable.addEventListener('mouseup', () => {
+            down = false;
+        });
+        gridTable.addEventListener('mouseleave', () => {
+            down = false;
+        });
+        gridTable.addEventListener('mouseover', e => {
+            if (down) {
+                if (e.target.tagName === 'TD') {
+                    e.target.style.backgroundColor = color.value;
+                }
+            }
+        });
+    });
+    gridTable.addEventListener('mousedown', (e) => {
+        e.target.style.backgroundColor = color.value;
+    });
+  });
+
+  fillButton.addEventListener('click', () => {
+    gridTable.querySelectorAll('td').forEach( td => td.style.backgroundColor = color.value);
+  });
+
