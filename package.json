@@ -1,0 +1,26 @@
+{
+  "name": "pixel-art",
+  "version": "1.0.0",
+  "description": "javascript-project",
+  "main": "server.js",
+  "proxy": "http://localhost:4002",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JesusReyes01/project-pixel-art-maker-starter.git"
+  },
+  "author": "Jesus Reyes <me@jesusreyes.dev> (jesusreyes.dev)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JesusReyes01/project-pixel-art-maker-starter/issues"
+  },
+  "homepage": "https://github.com/JesusReyes01/project-pixel-art-maker-starter#readme"
+}

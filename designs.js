@@ -61,7 +61,7 @@ gridTable.addEventListener('mousedown', (e) => {
     });
 });
 
-pixelCanvas.addEventListener('dblclick', e => {
+gridTable.addEventListener('dblclick', e => {
     e.target.style.backgroundColor = null;
 });
 
@@ -85,7 +85,7 @@ eraseMode.addEventListener('click', () => {
             }
         });
     });
-    pixelCanvas.addEventListener('mousedown', (e) => {
+    gridTable.addEventListener('mousedown', (e) => {
         e.target.style.backgroundColor = null;
     });
   });
