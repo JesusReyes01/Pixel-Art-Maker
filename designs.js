@@ -1,3 +1,5 @@
+"use strict";
+
 //Assigning elements to global variables
 let gridTable = document.getElementById('pixelCanvas');
 let color = document.getElementById('colorPicker');
@@ -59,6 +61,9 @@ gridTable.addEventListener('mousedown', (e) => {
             }
         }
     });
+    if (e.target.tagName === 'TD') {
+        e.target.style.backgroundColor = color.value;
+    }
 });
 
 gridTable.addEventListener('dblclick', e => {
@@ -85,7 +90,7 @@ eraseMode.addEventListener('click', () => {
             }
         });
     });
-    gridTable.addEventListener('mousedown', (e) => {
+    gridTable.addEventListener('mousedown', e => {
         e.target.style.backgroundColor = null;
     });
   });
